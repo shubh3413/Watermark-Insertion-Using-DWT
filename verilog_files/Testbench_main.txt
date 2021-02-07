@@ -1,0 +1,40 @@
+
+
+`timescale 1ns / 1ps
+
+
+module TB_DWT_2D;
+    
+    reg clk;
+    reg reset;
+    parameter N = 262144;//32x32x16
+   // parameter INFILE = "C:\Users\Shubh\Documents\MATLAB\myImageFile.txt";
+   //parameter INFILE = "C:/Users/Shubh/Desktop/blank.hex";
+    parameter INFILE = "C:/Users/Shubh/Documents/MATLAB/inputHex.hex";
+    //parameter WATERMARK = "C:/Users/Shubh/Desktop/blank1.hex";
+    //parameter WATERMARK = "C:/Users/shubh/Documents/MATLAB/inputwhex.hex";
+    parameter WATERMARK = "C:/Users/Shubh/Documents/MATLAB/star512.hex";
+    wire [16:0]x1,x2,x3;
+    //wire [23:0]yout;
+    
+    DWT_2D Instance(clk,x1,x2,x3,reset);
+   
+    
+    initial begin 
+        clk=0;
+        reset=1;
+        
+         #100;
+         reset=0;
+    //$display("x1:%0h,x2:%0h,x3:%0h",x1,x2,x3);
+    
+        
+    end
+    
+    
+    
+    always #0.1 clk = ~clk;
+    
+    
+
+endmodule

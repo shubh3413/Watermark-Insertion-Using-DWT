@@ -1,0 +1,46 @@
+// Code your design here
+module haardwt(in,reset,out);
+  parameter n=8;
+  input in[0:n-1];
+  input reset;
+  integer i;
+  integer j;
+  reg [n:0]k;
+  integer l;
+  reg signed [n+1:0]sum,diff;
+  output reg signed[n+1:0]out[0:n-1];
+  reg signed[n+1:0]arr[0:n-1];
+  
+  always @(*)begin
+  if(reset)
+    begin
+      k=n;
+      for(i=0; i<n; i=i+1) begin
+        arr[i]<=in[i];
+      end
+  	end
+    else
+      begin
+        for(i=0;i<$clog2(n);i=i+1)begin
+          #5
+          
+          k=k/2;
+          $display("k:%0h",k);
+          for(j=0;j<k;j++)begin
+            
+            sum=arr[j*2]+arr[(j*2)+1];
+            $display("sum:%0d",sum);
+            diff=arr[j*2]-arr[(j*2)+1];
+            $display("diff:%0d",diff);
+            out[j]=sum;
+            out[k+j]=diff;
+          end
+          for(l=0;l<k;l++)
+            begin
+              arr[l]=out[l];
+            end
+            $display("output: %0h,%0h,%0h,%0h,%0h,%0h,%0h,%0h", out[0],out[1],out[2],out[3],out[4],out[5],out[6],out[7]);
+        end
+      end
+  end
+endmodule
