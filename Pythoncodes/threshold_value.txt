@@ -1,0 +1,13 @@
+'applying threshold limit as 0,255 for pixels having values out of these range'
+
+import sys
+sys.stdout = open("dsproject4.txt", "w")
+for i in range(262144):
+    a=str(input())
+    if len(a)>2:
+        a=a[0:2]
+    if a=="xx":
+        a="ff"
+    print(a)
+
+sys.stdout.close()

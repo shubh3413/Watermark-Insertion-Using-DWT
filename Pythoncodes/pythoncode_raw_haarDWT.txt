@@ -1,0 +1,20 @@
+def discreteHaarWaveletTransform(input):
+    l = len(input)
+    output = [0]*l
+    length = l
+    while(True):
+        length = length//2
+        for i in range(0,length):
+            sum = input[i * 2] + input[i * 2 + 1]
+            difference = input[i * 2] - input[i * 2 + 1]
+            output[i] = sum
+            output[length + i] = difference;
+            
+        if(length == 1):
+            return output
+        
+        for i in range(0,length):
+            input[i]=output[i]
+
+out = discreteHaarWaveletTransform([1,1,1,1,1,1,1,1])---->Input array/vector
+print(out)
